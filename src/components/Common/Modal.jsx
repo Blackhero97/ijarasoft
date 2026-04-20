@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 
-const Modal = ({ isOpen, onClose, title, children, footer }) => {
+const Modal = ({ isOpen, onClose, title, children, footer, className = '', maxWidth = '600px' }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, title, children, footer }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-container fade-in" onClick={e => e.stopPropagation()}>
+      <div className={`modal-container fade-in ${className}`} style={{ maxWidth: maxWidth }} onClick={e => e.stopPropagation()}>
         <div className="modal-header">
           <h3>{title}</h3>
           <button className="modal-close" onClick={onClose}>
@@ -53,7 +53,6 @@ const Modal = ({ isOpen, onClose, title, children, footer }) => {
         .modal-container {
           background: white;
           width: 100%;
-          max-width: 600px;
           border-radius: var(--radius-lg);
           box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
           display: flex;
