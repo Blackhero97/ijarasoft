@@ -10,6 +10,7 @@ import Cars from './pages/Cars/Cars';
 import Properties from './pages/Properties/Properties';
 import Payments from './pages/Payments/Payments';
 import Statistics from './pages/Statistics/Statistics';
+import Finance from './pages/Finance/Finance';
 import Users from './pages/Users/Users';
 import Settings from './pages/Settings/Settings';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="properties" element={<Properties />} />
           <Route path="payments" element={<Payments />} />
           <Route path="expenses" element={<Expenses />} />
+          <Route path="finance" element={<Finance />} />
           <Route path="statistics" element={<Statistics />} />
           <Route path="users" element={<Users />} />
           <Route path="settings" element={<Settings />} />

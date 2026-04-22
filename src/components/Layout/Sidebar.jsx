@@ -15,7 +15,8 @@ import {
   Briefcase,
   PieChart, 
   ShieldAlert,
-  UserCog
+  UserCog,
+  DollarSign
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -32,7 +33,7 @@ const Sidebar = () => {
     if (path.includes('/rentals') || path.includes('/properties') || path.includes('/cars') || path.includes('/customers')) {
       setOpenGroups(prev => ({ ...prev, operatsiyalar: true }));
     }
-    if (path.includes('/payments') || path.includes('/expenses') || path.includes('/statistics')) {
+    if (path.includes('/payments') || path.includes('/expenses') || path.includes('/finance') || path.includes('/statistics')) {
       setOpenGroups(prev => ({ ...prev, moliya: true }));
     }
     if (path.includes('/users') || path.includes('/settings')) {
@@ -69,6 +70,7 @@ const Sidebar = () => {
       title: 'Moliya & Analitika',
       icon: PieChart,
       items: [
+        { name: 'Moliya', path: '/finance', icon: DollarSign },
         { name: 'To\'lovlar', path: '/payments', icon: CreditCard },
         { name: 'Xarajatlar', path: '/expenses', icon: Receipt },
         { name: 'Statistika', path: '/statistics', icon: BarChart3 },
