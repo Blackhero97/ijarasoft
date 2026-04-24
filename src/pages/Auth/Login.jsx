@@ -4,13 +4,22 @@ import { FiUser, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { RiBuilding2Line } from 'react-icons/ri';
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Simulate login
-    navigate('/dashboard');
+    setError('');
+
+    if (username === 'fisrt' && password === 'parol123') {
+      localStorage.setItem('isLoggedIn', 'true');
+      navigate('/dashboard');
+    } else {
+      setError('Foydalanuvchi nomi yoki parol noto\'g\'ri');
+    }
   };
 
   return (
@@ -38,6 +47,12 @@ const Login = () => {
               <p>Barcha ijaralar, mijozlar va hisobotlarni bir joyda boshqarish uchun tizimga kiring.</p>
             </div>
 
+            {error && (
+              <div className="login-error-message">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleLogin} className="login-form">
               <div className="form-group">
                 <label htmlFor="auth-username" className="input-label">Foydalanuvchi nomi</label>
@@ -48,6 +63,8 @@ const Login = () => {
                   placeholder="Username kiriting" 
                   required
                   autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
 
@@ -61,6 +78,8 @@ const Login = () => {
                     placeholder="••••••••" 
                     required
                     autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <button 
                     type="button" 
@@ -272,6 +291,27 @@ const Login = () => {
         .link-contact:hover { text-decoration: underline; }
         
         .text-blue { color: #ea580c; }
+
+        .login-error-message {
+          background-color: #fef2f2;
+          color: #dc2626;
+          padding: 0.75rem 1rem;
+          border-radius: 8px;
+          border: 1px solid #fee2e2;
+          font-size: 0.85rem;
+          font-weight: 500;
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+          10%, 90% { transform: translate3d(-1px, 0, 0); }
+          20%, 80% { transform: translate3d(2px, 0, 0); }
+          30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+          40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
 
         @media (max-width: 900px) {
           .login-container { flex-direction: column; min-height: auto; }

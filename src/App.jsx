@@ -14,6 +14,8 @@ import Finance from './pages/Finance/Finance';
 import Users from './pages/Users/Users';
 import Settings from './pages/Settings/Settings';
 
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+
 function App() {
   return (
     <BrowserRouter>
@@ -21,19 +23,21 @@ function App() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/login" element={<Navigate to="/auth/login" replace />} />
         
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<Navigate to="/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="rentals" element={<Rentals />} />
-          <Route path="cars" element={<Cars />} />
-          <Route path="customers" element={<Customers />} />
-          <Route path="properties" element={<Properties />} />
-          <Route path="payments" element={<Payments />} />
-          <Route path="expenses" element={<Expenses />} />
-          <Route path="finance" element={<Finance />} />
-          <Route path="statistics" element={<Statistics />} />
-          <Route path="users" element={<Users />} />
-          <Route path="settings" element={<Settings />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="rentals" element={<Rentals />} />
+            <Route path="cars" element={<Cars />} />
+            <Route path="customers" element={<Customers />} />
+            <Route path="properties" element={<Properties />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="expenses" element={<Expenses />} />
+            <Route path="finance" element={<Finance />} />
+            <Route path="statistics" element={<Statistics />} />
+            <Route path="users" element={<Users />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Route>
       </Routes>
 

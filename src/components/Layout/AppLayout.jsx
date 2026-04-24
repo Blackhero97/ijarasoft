@@ -1,10 +1,18 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { Bell, Search, User } from 'lucide-react';
 
-const Header = () => (
-  <header className="app-header glass">
+const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    navigate('/auth/login');
+  };
+
+  return (
+    <header className="app-header glass">
     <div className="header-search">
       <Search size={18} className="search-icon" />
       <input type="text" placeholder="Qidiruv..." />
@@ -18,7 +26,7 @@ const Header = () => (
         </button>
       </div>
 
-      <div className="user-profile">
+      <div className="user-profile" onClick={handleLogout} title="Chiqish">
         <div className="user-info">
           <p className="user-name">Hasan Admin</p>
           <p className="user-role">Administrator</p>
@@ -208,8 +216,9 @@ const Header = () => (
         .header-search { max-width: 300px; }
       }
     `}} />
-  </header>
-);
+    </header>
+  );
+};
 
 const AppLayout = () => {
   return (
