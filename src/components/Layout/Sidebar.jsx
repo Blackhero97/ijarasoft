@@ -9,7 +9,6 @@ import {
   Receipt, 
   BarChart3, 
   Settings,
-  LogOut,
   Car,
   ChevronDown,
   Briefcase,
@@ -149,10 +148,7 @@ const Sidebar = () => {
       </div>
 
       <div className="sidebar-footer">
-        <button className="logout-btn">
-          <LogOut size={20} strokeWidth={1.8} />
-          <span>Chiqish tizimdan</span>
-        </button>
+        <div className="sidebar-version">v1.2.0</div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
@@ -326,29 +322,16 @@ const Sidebar = () => {
         }
 
         .sidebar-footer {
-          padding: 1.25rem 0.75rem;
+          padding: 1.25rem 1.5rem;
           border-top: 1px solid var(--border-light);
           margin-top: auto;
         }
 
-        .logout-btn {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          padding: 0.8rem 1rem;
-          border-radius: var(--radius-sm);
-          color: var(--danger);
-          background: #fef2f2;
-          border: none;
+        .sidebar-version {
+          font-size: 0.75rem;
+          color: var(--text-muted);
+          text-align: center;
           font-family: var(--font-body);
-          transition: var(--tr-base);
-          font-weight: 600;
-          cursor: pointer;
-        }
-
-        .logout-btn:hover {
-          background: #fee2e2;
         }
       `}} />
     </div>
